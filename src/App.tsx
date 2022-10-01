@@ -1,10 +1,7 @@
-import { Home } from './components/Home'
-import { SocketContext, socket } from './context/socket'
+import { Home } from './components/Home';
 
 export function App() {
   return (
-  <SocketContext.Provider value={socket}>
     <Home/>
-  </SocketContext.Provider>
   )
 }

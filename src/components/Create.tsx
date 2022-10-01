@@ -27,7 +27,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export function Create() {
 
-    const [enterRoom, setEnterRoom] = useState(true);
+    const [enterRoom, setEnterRoom] = useState(false);
     const [roomName, setRoomName] = useState('Luiz Felipe');
     const [numberOfPlayers, setNumberOfPlayers] = useState(2);
 
@@ -54,15 +54,15 @@ export function Create() {
     return (
         <div>
             {
-                enterRoom ? <Room roomName={roomName} numberOfPlayers={numberOfPlayers}/> :
+                enterRoom ? <Room roomName={roomName} numberOfPlayers={numberOfPlayers} create={true}/> :
                     <div>
                         <div className="text-center items-center">
-                            <h1 className="font-bold m-36 text-7xl font-sans">
+                            <h1 className="font-bold mt-24 text-7xl font-sans">
                                 Create Room
                             </h1>
 
                             <div className="w-96 my-0 m-auto">
-                                <form className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4" onSubmit={onSubmit}>
+                                <form className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4 mt-12" onSubmit={onSubmit}>
                                     <div className="mb-4">
                                         <label className="block text-gray-700 text-sm font-bold mb-2">
                                             Room Name
