@@ -41,6 +41,7 @@ export function Home() {
                 },
                 (error) => {
                     console.log(error);
+                    setRooms([]);
                 }
             )
     }, []);
@@ -49,7 +50,7 @@ export function Home() {
         <div>
             {
                 joinRoom ?
-                    <Room roomName={room.name} numberOfPlayers={room.numberOfPlayers} create={false} /> :
+                    <Room username={'Random Name'} roomName={room.name} numberOfPlayers={room.numberOfPlayers} create={false} /> :
 
                     createRoom ? (
                         <Create />
@@ -67,7 +68,8 @@ export function Home() {
                                             <button onClick={handleJoinRoom} id={room.name} key={room.name} disabled={room.started} className={`${room.started ? `bg-pink-500 hover:bg-pink-700` : ` bg-green-500 hover:bg-green-700`} text-white font-bold mr-3 mt-3 py-2 px-4 rounded`}>
                                                 {room.name} - {room.capacity}
                                             </button>
-                                        ))}
+                                        ))
+                                }
                             </div>
                             <button onClick={handleClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-12 py-2 px-4 rounded">
                                 Create Room
