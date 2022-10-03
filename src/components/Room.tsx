@@ -1,6 +1,8 @@
 import React from 'react';
 import { io } from 'socket.io-client';
-var randomColor = require('randomcolor'); // import the script
+
+var randomColor = require('randomcolor'); 
+
 interface RoomData {
   username: string,
   roomName: string,
@@ -28,7 +30,7 @@ class Room extends React.Component<RoomData, RoomState> {
     this.state = {
       role: '',
       card: '',
-      players: ['Jesse Pinkman', 'Mr.White', 'Gus Fring'],
+      players: [''],
     }
 
     this.handleSkip = this.handleSkip.bind(this);
@@ -101,7 +103,7 @@ class Room extends React.Component<RoomData, RoomState> {
     return (
       <div>
         <div className='overflow-auto'>
-          <div className='text-center float-left w-18 mx-12 mt-12'>
+          <div className='text-center w-18 ml-12 mt-12 absolute left-0 '>
             <h4 className='font-bold mb-3'>Players</h4>
             {
               this.state.players.map(player =>
@@ -112,7 +114,7 @@ class Room extends React.Component<RoomData, RoomState> {
                 }} className="font-sans font-bold text-sm" key={player + this.state.players.indexOf(player)}>{player}</h6>)
             }
           </div>
-          <div className="text-center">
+          <div className="text-center relative">
             <h1 className="font-bold mt-12 font-sans text-3xl">
               Welcome to {this.props.roomName}
             </h1>

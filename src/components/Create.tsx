@@ -1,45 +1,17 @@
-import { useForm, Resolver } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Room from './Room';
-
-type FormValues = {
-    username: string,
-    name: string,
-    numberOfPlayers: string
-};
-
-const resolver: Resolver<FormValues> = async (values) => {
-    return {
-        values: values ? values: {},
-        errors: !values
-            ? {
-                name: {
-                    type: 'required',
-                    message: 'This is required.',
-                }, 
-                numbeOfPlayers: {
-                    type: 'required',
-                    message: 'This is required.'
-                },
-                username: {
-                    type: 'required',
-                    message: 'This is required.'
-                }
-            }
-            : {},
-    };
-};
 
 export function Create() {
 
     const [enterRoom, setEnterRoom] = useState(false);
-    const [username, setUsername] = useState("Jesse Pinkman");
-    const [roomName, setRoomName] = useState("Heisenberg's room");
+    const [username, setUsername] = useState('');
+    const [roomName, setRoomName] = useState('');
     const [numberOfPlayers, setNumberOfPlayers] = useState(7);
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver });
+    const {register, handleSubmit} = useForm();
+    
     const onSubmit = handleSubmit((data) => {
-
         const {username, name, numberOfPlayers} = data;
 
         const nPlayers = parseInt(numberOfPlayers);
@@ -56,7 +28,7 @@ export function Create() {
 
         setEnterRoom(true);
         setUsername(username)
-        setRoomName(roomName);
+        setRoomName(name);
         setNumberOfPlayers(nPlayers);
     });
 
@@ -91,7 +63,7 @@ export function Create() {
                                         </label>
                                         <input {...register("numberOfPlayers")} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="players_number" type="text" placeholder="7" />
                                     </div>
-                                    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded" type="submit" value="Submit" />
+                                    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded" type="submit" value="Create" />
                                 </form>
                             </div>
                         </div>
