@@ -27,17 +27,19 @@ export function Modal(props: any) {
                     console.log(error);
                 }
             )
-
-    });
+        }
+    );
 
     return (
-        <div>
+        <div className="flex w-full h-full justify-center items-center absolute">
+            
+            <div className="w-full h-full absolute bg-black opacity-25"/> 
             {
                 joinRoom ? <Room username={username} roomName={room.name} numberOfPlayers={room.numberOfPlayers} create={true}/> :
-                <div className="w-64 h-44 bg-white rounded fixed top-2/4 left-2/4">
-                    <form className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4" onSubmit={onSubmit}>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                <div className="w-80 bg-white rounded text-center z-50">
+                    <form className="shadow-md rounded p-8" onSubmit={onSubmit}>
+                        <div className="mb-4 w-60 ">
+                            <label className="block float-left text-gray-700 text-sm font-bold mb-2">
                                 Username
                             </label>
                             <input {...register('username')} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usename" type="text" placeholder="Jesse Pinkman" />
@@ -48,5 +50,4 @@ export function Modal(props: any) {
             }
         </div>
     );
-
 }

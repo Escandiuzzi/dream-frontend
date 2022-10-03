@@ -58,7 +58,7 @@ class Room extends React.Component<RoomData, RoomState> {
 
   componentDidMount() {
     this.socket.on('start', () => { console.log('received message from game room') });
-    this.socket.on('user_joined', (args) => {
+    this.socket.on('players_changed', (args) => {
       const { players } = args;
       this.setState({ players: players });
     });

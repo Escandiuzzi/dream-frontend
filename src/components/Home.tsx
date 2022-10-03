@@ -36,34 +36,34 @@ export function Home() {
 
     return (
         <div>
+            {showModal && <Modal roomName={room.name}/>}
             {
                 createRoom ? (
                     <Create />
                 )
                     :
-                    <div className="text-center">
+                    <div className='h-screen flex justify-center'>
+                        <div className="text-center">
+                            <h1 className="font-bold text-7xl font-sans mt-36">
+                                When i dream...
+                            </h1>
+                            <div className='grid grid-cols-4 mt-24 px-32'>
+                                {
+                                    rooms
+                                        .sort((a, b) => Number(a.started) - Number(b.started))
+                                        .map(room => (
+                                            <button onClick={handleModal} id={room.name} key={room.name} disabled={room.started} className={`${room.started ? `bg-pink-500 hover:bg-pink-700` : ` bg-green-500 hover:bg-green-700`} text-white font-bold mr-3 mt-3 py-2 px-4 rounded`}>
+                                                {room.name} - {room.capacity}
+                                            </button>
+                                        ))
+                                }
+                            </div>
 
-                        {showModal && <Modal roomName={room.name} />}
+                            <button onClick={handleClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-12 py-2 px-4 rounded">
+                                Create Room
+                            </button>
 
-                        <h1 className="font-bold m-36 text-7xl font-sans">
-                            When i dream...
-                        </h1>
-                        <div className='grid grid-cols-4 px-32'>
-                            {
-                                rooms
-                                    .sort((a, b) => Number(a.started) - Number(b.started))
-                                    .map(room => (
-                                        <button onClick={handleModal} id={room.name} key={room.name} disabled={room.started} className={`${room.started ? `bg-pink-500 hover:bg-pink-700` : ` bg-green-500 hover:bg-green-700`} text-white font-bold mr-3 mt-3 py-2 px-4 rounded`}>
-                                            {room.name} - {room.capacity}
-                                        </button>
-                                    ))
-                            }
                         </div>
-
-                        <button onClick={handleClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-12 py-2 px-4 rounded">
-                            Create Room
-                        </button>
-
                     </div>
             }
         </div>
