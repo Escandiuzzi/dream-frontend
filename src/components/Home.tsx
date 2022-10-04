@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Create } from './Create';
-import { Modal } from './Modal';
+import { Join } from './Join';
 
 export function Home() {
     const [rooms, setRooms] = useState([{ name: '', started: false, capacity: '' }]);
     const [room, setRoom] = useState({ name: '', numberOfPlayers: 0 });
     const [createRoom, setCreateRoom] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [joinRoom, setJoinRoom] = useState(false);
 
     function handleClick(event: any) {
         setCreateRoom(true);
@@ -14,7 +14,7 @@ export function Home() {
 
     function handleModal(event: any) {
         let roomName = event.currentTarget.id;
-        setShowModal(true);
+        setJoinRoom(true);
         setRoom({ name: roomName, numberOfPlayers: 0 });
     }
 
@@ -36,8 +36,8 @@ export function Home() {
 
     return (
         <div>
-            {showModal && <Modal roomName={room.name}/>}
             {
+                joinRoom ? <Join roomName={room.name}/> :
                 createRoom ? (
                     <Create />
                 )
@@ -47,6 +47,7 @@ export function Home() {
                             <h1 className="font-bold text-7xl font-sans mt-36">
                                 When i dream...
                             </h1>
+                            
                             <div className='grid grid-cols-4 mt-24 px-32'>
                                 {
                                     rooms

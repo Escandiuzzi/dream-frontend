@@ -59,6 +59,9 @@ class Room extends React.Component<RoomData, RoomState> {
   componentDidMount() {
     this.socket.on('start', () => { console.log('received message from game room') });
     this.socket.on('players_changed', (args) => {
+
+      console.log(args);
+
       const { players } = args;
       this.setState({ players: players });
     });
@@ -133,9 +136,9 @@ class Room extends React.Component<RoomData, RoomState> {
                   <div className='mt-32'>
                     <h1 className='font-bold font-sans'>{this.state.card}</h1>
                     <div className='my-o mt-auto items-center'>
-                      <button onClick={this.handleSkip} className="bg-red-500 hover:bg-red-700 text-white font-bold w-24 my-24 mx-2 py-2 px-4 rounded">Skip</button>
+                      <button onClick={this.handleSkip} className="bg-red-500 hover:bg-red-700 text-white font-bold w-28 my-24 mx-2 py-2 px-4 rounded">Skip</button>
 
-                      <button onClick={this.handleGuess} className="bg-green-500 hover:bg-green-700 text-white font-bold w-24 my-24 mx-2 py-2 px-4 rounded">Guessed</button>
+                      <button onClick={this.handleGuess} className="bg-green-500 hover:bg-green-700 text-white font-bold w-28   my-24 mx-2 py-2 px-4 rounded">Guessed</button>
                     </div>
                   </div>
             }
